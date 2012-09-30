@@ -153,7 +153,6 @@ import types
 from base64 import standard_b64decode
 
 # Sage libraries
-from jsmath import math_parse
 from sagenb.misc.misc import srange, sage_eval, Color, is_Matrix
 from sage.misc.cachefunc import cached_method
 
@@ -786,7 +785,7 @@ class InteractControl(InteractElement):
             sage: InteractControl('x', default_value=5, label='the x value').label()
             'the x value'
         """
-        return math_parse(self.__label)
+        return self.__label
 
     def default_value(self):
         """
@@ -3185,7 +3184,7 @@ class slider_generic(control):
 
             #Compute list of values
             num_steps = int(math.ceil((self.__vmax-self.__vmin)/float(self.__step_size)))
-            if num_steps <= 2:
+            if num_steps <= 1:
                 vals = [self.__vmin, self.__vmax]
             else:
                 vals = srange(self.__vmin, self.__vmax, self.__step_size, include_endpoint=True)
